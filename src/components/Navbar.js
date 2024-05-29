@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './style/navbar.css';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+        window.location.reload();
     };
 
     return (
@@ -15,9 +23,10 @@ function Navbar() {
                 &#9776;
             </button>
             <ul className={`nav-links ${isOpen ? "show-nav" : ""}`}>
-                <li><a href="/cars">Our Cars</a></li>
-                <li><a href="/Sellcar">Sell Your Car</a></li>
-                <li><a href="/">Logout</a></li>
+                <li><Link to="/cars">Our Cars</Link></li>
+                <li><Link to="/sellcar">Sell Your Car</Link></li>
+                <li><Link to="/mycars">My Cars</Link></li>
+                <li><button onClick={handleLogout}>Logout</button></li>
             </ul>
         </nav>
     );

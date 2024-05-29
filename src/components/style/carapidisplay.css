@@ -1,34 +1,47 @@
+.grid-item {
+  background: grey;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  font-size: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  position: relative; /* Add relative positioning */
+  overflow: hidden; /* Hide overflow to contain the image */
+}
+
+.grid-item img {
+  /* Set image width to 100% of the parent div */
+  width: 100%;
+  /* Maintain aspect ratio */
+  height: auto;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+      grid-template-columns: repeat(2, 1fr);
   }
-  
-  .grid-item {
-    background: grey;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    text-align: center;
-    font-size: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+      grid-template-columns: 1fr;
   }
-  
-  .grid-item:hover {
-    transform: scale(1.05);
-  }
-  
-  @media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-  }
+}
+
+button {
+  margin: 5px;
+}
