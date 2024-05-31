@@ -29,7 +29,7 @@ const UserCars = () => {
                 console.log('Decoded Token:', decodedToken);
                 setUserId(decodedToken.nameid); // Set userId from decoded token
 
-                const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/user/${decodedToken.nameid}?isPublic=true`);
+                const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/user/${decodedToken.nameid}`);
                 if (!response.ok) {
                     throw new Error();
                 }
@@ -45,6 +45,12 @@ const UserCars = () => {
 
         fetchUserData();
     }, []);
+
+    const getAntiForgeryToken = async () => {
+        const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/antiforgerytoken');
+        const data = await response.json();
+        return data.token;
+    };
 
     const deleteCar = async (id) => {
         try {
@@ -109,10 +115,16 @@ const UserCars = () => {
     const submitEdit = async (e) => {
         e.preventDefault();
         try {
+            // Get anti-forgery token
+            const antiForgeryToken = await getAntiForgeryToken();
+            const token = localStorage.getItem('token');
+
             const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/${editingCar}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                    'XSRF-TOKEN': antiForgeryToken
                 },
                 body: JSON.stringify({
                     ...editForm,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode }from 'jwt-decode';
 import './style/sellcar.css';
 
 const SellCar = () => {
@@ -9,6 +9,12 @@ const SellCar = () => {
     price: '',
     imageFile: null // New state to store the selected image file
   });
+
+  const getAntiForgeryToken = async () => {
+    const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/antiforgerytoken');
+    const data = await response.json();
+    return data.token;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,11 +34,15 @@ const SellCar = () => {
       formData.append('image', carDetails.imageFile); // Append the image file
       formData.append('userId', userId); // Append the userId
 
+      // Get anti-forgery token
+      const antiForgeryToken = await getAntiForgeryToken();
+
       // Send form data to your backend API to save the car in the database
       const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/Car', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}` // Include JWT token in the request headers
+          'Authorization': `Bearer ${token}`, // Include JWT token in the request headers
+          'XSRF-TOKEN': antiForgeryToken // Include anti-forgery token in the request headers
         },
         body: formData
       });
@@ -89,6 +99,6 @@ const SellCar = () => {
       </form>
     </div>
   );
-}
+};
 
 export default SellCar;
