@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getCSRFToken } from './Auth.js'; 
-
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+
+  const getCSRFToken = () => {
+    const cookie = document.cookie.match(new RegExp('(^| )XSRF-TOKEN=([^;]+)'));
+    return cookie ? cookie[2] : null;
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,8 +39,7 @@ const Login = () => {
         console.error('Login error:', error.message);
         setError('An error occurred during login. Please try again.');
     }
-    };
-
+  };
 
   return (
     <div className="form-container">
