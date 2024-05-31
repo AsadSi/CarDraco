@@ -6,11 +6,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
-  const getCSRFToken = () => {
-    const cookie = document.cookie.match(new RegExp('(^| )XSRF-TOKEN=([^;]+)'));
-    return cookie ? cookie[2] : null;
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -19,7 +14,6 @@ const Login = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-XSRF-TOKEN': getCSRFToken()
             },
             body: JSON.stringify({ username, password }),
         });
@@ -39,7 +33,8 @@ const Login = () => {
         console.error('Login error:', error.message);
         setError('An error occurred during login. Please try again.');
     }
-  };
+    };
+
 
   return (
     <div className="form-container">
@@ -66,9 +61,9 @@ const Login = () => {
             </div>
   
 
-            <button type="submit">Login new one</button>
+            <button type="submit">Login</button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+            <p>Don't have an account? <Link to="/signup">signup</Link></p>
         </form>
         </div>
     </div>
