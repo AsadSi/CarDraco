@@ -7,42 +7,32 @@ const SellCar = () => {
     name: '',
     condition: '',
     price: '',
-    imageFile: null
+    imageFile: null // New state to store the selected image file
   });
-  const [submitting, setSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const getAntiForgeryToken = async () => {
-    const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/antiforgerytoken');
-    const data = await response.json();
-    return data.token;
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitting(true);
-    setErrorMessage('');
 
+    // Decode JWT token to get user ID
     const token = localStorage.getItem('token');
 
     try {
       const decodedToken = jwtDecode(token);
-      const userId = decodedToken.nameid;
+      const userId = decodedToken.nameid; // Assuming the user's ID in the token is called 'nameid'
 
+      // Create form data
       const formData = new FormData();
       formData.append('name', carDetails.name);
       formData.append('condition', carDetails.condition);
       formData.append('price', carDetails.price);
-      formData.append('image', carDetails.imageFile);
-      formData.append('userId', userId);
+      formData.append('image', carDetails.imageFile); // Append the image file
+      formData.append('userId', userId); // Append the userId
 
-      const antiForgeryToken = await getAntiForgeryToken();
-
+      // Send form data to your backend API to save the car in the database
       const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/Car', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'XSRF-TOKEN': antiForgeryToken
+          'Authorization': `Bearer ${token}` // Include JWT token in the request headers
         },
         body: formData
       });
@@ -51,18 +41,12 @@ const SellCar = () => {
         throw new Error(`Network response was not ok. Status: ${response.status}`);
       }
 
-      setCarDetails({
-        name: '',
-        condition: '',
-        price: '',
-        imageFile: null
-      });
-      setSubmitting(false);
-      console.log('Car sold successfully!');
+      const data = await response.json();
+      console.log('Response:', data);
+      // Optionally, redirect or show a success message
     } catch (error) {
-      setErrorMessage('An error occurred while selling the car. Please try again later.');
-      console.error('Error:', error);
-      setSubmitting(false);
+      console.error('Error:', error); // Log error
+      // Handle error, show error message to the user
     }
   };
 
@@ -77,7 +61,7 @@ const SellCar = () => {
   const handleImageChange = (event) => {
     setCarDetails(prevState => ({
       ...prevState,
-      imageFile: event.target.files[0]
+      imageFile: event.target.files[0] // Update the image file state
     }));
   };
 
@@ -87,22 +71,21 @@ const SellCar = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name:</label>
-          <input type="text" name="name" value={carDetails.name} onChange={handleChange} required />
+          <input type="text" name="name" value={carDetails.name} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>Condition:</label>
-          <input type="text" name="condition" value={carDetails.condition} onChange={handleChange} required />
+          <input type="text" name="condition" value={carDetails.condition} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>Price:</label>
-          <input type="number" name="price" value={carDetails.price} onChange={handleChange} required />
+          <input type="number" name="price" value={carDetails.price} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label>Image:</label>
-          <input type="file" accept="image/*" name="image" onChange={handleImageChange} required />
+          <input type="file" accept="image/*" name="image" onChange={handleImageChange} />
         </div>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
-        <button type="submit" disabled={submitting}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
