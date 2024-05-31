@@ -66,7 +66,7 @@ const Login = () => {
             </div>
   
 
-            <button type="submit">Login</button>
+            <button type="submit">Login new one</button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
         </form>
