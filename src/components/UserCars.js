@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './style/carapidisplay.css';
+import { getCSRFToken } from './Auth.js'; 
+
 
 const UserCars = () => {
     const [cars, setCars] = useState([]);
@@ -29,7 +31,11 @@ const UserCars = () => {
                 console.log('Decoded Token:', decodedToken);
                 setUserId(decodedToken.nameid); // Set userId from decoded token
 
-                const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/user/${decodedToken.nameid}?isPublic=true`);
+                const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/user/${decodedToken.nameid}?isPublic=true`, {
+                    headers: {
+                        'X-XSRF-TOKEN': getCSRFToken()
+                    }
+                });
                 if (!response.ok) {
                     throw new Error();
                 }
@@ -50,6 +56,9 @@ const UserCars = () => {
         try {
             const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/car/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    'X-XSRF-TOKEN': getCSRFToken()
+                },
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -113,6 +122,7 @@ const UserCars = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': getCSRFToken()
                 },
                 body: JSON.stringify({
                     ...editForm,

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getCSRFToken } from './Auth.js'; 
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -14,6 +16,7 @@ const Login = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-XSRF-TOKEN': getCSRFToken()
             },
             body: JSON.stringify({ username, password }),
         });
@@ -63,7 +66,7 @@ const Login = () => {
 
             <button type="submit">Login</button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <p>Don't have an account? <Link to="/signup">signup</Link></p>
+            <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
         </form>
         </div>
     </div>
