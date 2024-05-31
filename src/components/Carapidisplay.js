@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './style/carapidisplay.css';
-import { getCSRFToken } from './Auth.js'; 
 
 function Carapidisplay() {
     const [cars, setCars] = useState([]);
@@ -10,11 +9,10 @@ function Carapidisplay() {
             try {
                 const isAdmin = localStorage.getItem('role') === '1';
                 const url = isAdmin ? 'https://apicedraco20240522123857.azurewebsites.net/api/Car' : 'https://apicedraco20240522123857.azurewebsites.net/api/car/public';
-
+                
                 const response = await fetch(url, {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                        'X-XSRF-TOKEN': getCSRFToken()
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 });
 
@@ -38,7 +36,6 @@ function Carapidisplay() {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                    'X-XSRF-TOKEN': getCSRFToken()
                 },
             });
             if (!response.ok) {

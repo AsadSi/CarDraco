@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './style/sellcar.css';
-import { getCSRFToken } from './Auth.js'; 
-
 
 const SellCar = () => {
   const [carDetails, setCarDetails] = useState({
@@ -34,8 +32,7 @@ const SellCar = () => {
       const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/Car', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`, // Include JWT token in the request headers
-          'X-XSRF-TOKEN': getCSRFToken()
+          'Authorization': `Bearer ${token}` // Include JWT token in the request headers
         },
         body: formData
       });
