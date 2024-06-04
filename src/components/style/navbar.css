@@ -12,17 +12,22 @@ nav {
   }
   
   li {
-    margin-left: 20px;
+    margin: 0 20px;
   }
   
-  a {
+  li a {
     color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 1.1rem;
   }
   
-  a:hover {
+  li a:hover {
     color: #ccc;
+  }
+
+  li button {
+    margin-top: -5px;
   }
   
   .menu-icon {
@@ -47,8 +52,9 @@ nav {
       background-color: #333;
       padding: 10px 0;
       position: absolute;
-      top: 50px;
+      top: 35px;
       left: 0;
+      z-index: 99;
     }
   
     ul.menu-active {
