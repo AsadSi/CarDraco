@@ -12,10 +12,9 @@ import './App.css';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check if user is authenticated on component mount
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token); // Set isAuthenticated based on token existence
+    setIsAuthenticated(!!token);
   }, []);
 
   return (

@@ -5,7 +5,7 @@ const ProtectedRoute = ({ element, path, isAuthenticated }) => {
   return isAuthenticated ? (
     element
     ) : (
-    <Navigate to="/" replace state={{ from: path }} /> // Redirect to login if not authenticated
+    <Navigate to="/" replace state={{ from: path }} />
   );
 };
 
