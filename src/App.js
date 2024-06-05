@@ -33,7 +33,7 @@ const App = () => {
         />
         <Route
           path="/mycars"
-          element={<ProtectedRoute element={<UserCars />} path="/mycars" isAuthenticated={isAuthenticated} />} // Add a protected route for UserCars
+          element={<ProtectedRoute element={<UserCars />} path="/mycars" isAuthenticated={isAuthenticated} />}
         />
       </Routes>
     </Router>

@@ -116,7 +116,7 @@ const UserCars = () => {
                 },
                 body: JSON.stringify({
                     ...editForm,
-                    userId: userId // Include userId in the request body
+                    userId: userId
                 })
             });
 
@@ -148,9 +148,9 @@ const UserCars = () => {
                             <img src={car.imageUrl} alt={car.name} />
                         </div>
                         <div>
-                            <p>Name: {car.name}</p>
-                            <p>Condition: {car.condition}</p>
-                            <p>Price: ${car.price}</p>
+                            <p>{car.name}</p>
+                            <p>{car.condition}</p>
+                            <p>${car.price}</p>
                             <button onClick={() => startEditCar(car)}>Edit</button>
                             <button onClick={() => deleteCar(car.id)}>Delete</button>
                         </div>

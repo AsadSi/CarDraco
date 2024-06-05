@@ -63,9 +63,9 @@ function Carapidisplay() {
                             <img src={car.imageUrl} alt={car.name} />
                         </div>
                         <div>
-                            <p>Name: {car.name}</p>
-                            <p>Condition: {car.condition}</p>
-                            <p>Price: ${car.price}</p>
+                            <p>{car.name}</p>
+                            <p>{car.condition}</p>
+                            <p>${car.price}</p>
                             {localStorage.getItem('role') === '1' && (
                                 <button onClick={() => deleteCar(car.id)}>Delete</button>
                             )}
