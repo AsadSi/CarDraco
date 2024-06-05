@@ -29,14 +29,14 @@
   padding: 20px;
 }
 
-@media (min-width: 481px) {
+@media (max-width: 481px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 769px) {
+@media (max-width: 769px) {
   .grid-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
