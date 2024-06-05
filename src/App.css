@@ -44,7 +44,7 @@ body {
 .image-container {
   position: relative;
   width: 100%;
-  height: 50vh; /* 50% of the viewport height */
+  height: 30vh;
   background-image: url('https://media.wired.co.uk/photos/6580b93a6d3bcdeb406363a1/16:9/w_2560%2Cc_limit/Reuelto_Grigio%2520Telesto_001.jpg');
   background-size: cover;
   background-position: center;
@@ -56,7 +56,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

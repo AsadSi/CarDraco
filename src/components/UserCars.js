@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import './style/carapidisplay.css';
 
@@ -16,6 +16,8 @@ const UserCars = () => {
         isPublic: true // Default value for isPublic
     });
     const [userId, setUserId] = useState(null); // State to store userId
+    const [successMessage, setSuccessMessage] = useState('');
+    const editingCarRef = useRef(null); // Reference to the editing car section
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -68,15 +70,17 @@ const UserCars = () => {
             condition: car.condition,
             price: car.price,
             imageUrl: car.imageUrl,
-            isPublic: car.isPublic // Set isPublic value from the car data
+            isPublic: car.isPublic 
         });
+
+        // Scroll to the editing car section
+        editingCarRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     const handleEditChange = (e) => {
         const { name, value, type, checked } = e.target;
         console.log(`Change made to ${name}: ${value}`);
         if (name === 'isPublic') {
-            // Convert value to boolean
             setEditForm(prevState => ({
                 ...prevState,
                 isPublic: value === 'true'
@@ -128,6 +132,7 @@ const UserCars = () => {
             console.log('Changes applied:', updatedCar);
             setCars(cars.map(car => car.id === editingCar ? updatedCar : car));
             setEditingCar(null);
+            setSuccessMessage('Car edited successfully!');
         } catch (err) {
             setError(err);
         }
@@ -159,9 +164,10 @@ const UserCars = () => {
             </div>
             {loading && <p>Loading...</p>}
             {error && <p>{error.message}</p>}
+            {successMessage && <p>{successMessage}</p>}
 
             {editingCar && (
-                <div className="form-container">
+                <div ref={editingCarRef} className="form-container">
                     <h1>Edit Car</h1>
                     <form onSubmit={submitEdit}>
                         <div className="form-group">

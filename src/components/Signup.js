@@ -4,30 +4,27 @@ import { Link } from 'react-router-dom';
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState(0); // 0 for user, 1 for admin
+  const [role, setRole] = useState(0);
 
   const handleSignup = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault(); 
 
     try {
-      const response = await fetch('https://localhost:7273/api/User/signup', {
+      const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/User/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password, role }), // Send user data as JSON
+        body: JSON.stringify({ username, password, role }),
       });
 
       if (response.ok) {
         console.log('Signup successful');
-        // Optionally, you can redirect the user or show a success message here
       } else {
         console.error('Signup failed');
-        // Handle signup failure (show error message to the user)
       }
     } catch (error) {
       console.error('Signup error:', error);
-      // Handle other potential errors (e.g., network issues)
     }
   };
 
