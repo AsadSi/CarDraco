@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,9 +24,9 @@ const Login = () => {
             const { token, role } = data;
 
             localStorage.setItem('token', token);
-            localStorage.setItem('role', role.toString()); // Store role as string ('0' or '1')
+            localStorage.setItem('role', role.toString()); 
             setError(null);
-            window.location.reload(); // Refresh page to update authentication status
+            navigate('/cars');
         } else {
             setError('Invalid credentials. Please try again.');
         }
@@ -33,8 +34,7 @@ const Login = () => {
         console.error('Login error:', error.message);
         setError('An error occurred during login. Please try again.');
     }
-    };
-
+  };
 
   return (
     <div className="form-container">
@@ -59,8 +59,6 @@ const Login = () => {
                 required
                 />
             </div>
-  
-
             <button type="submit">Login</button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <p>Don't have an account? <Link to="/signup">signup</Link></p>
