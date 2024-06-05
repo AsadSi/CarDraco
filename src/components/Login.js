@@ -33,6 +33,7 @@ const Login = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('role', role.toString()); 
         setError(null);
+        window.location.reload();
         navigate('/cars');
       } else {
         setError('Invalid credentials. Please try again.');
