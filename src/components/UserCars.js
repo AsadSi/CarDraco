@@ -13,11 +13,11 @@ const UserCars = () => {
         condition: '',
         price: 0,
         imageUrl: '',
-        isPublic: true // Default value for isPublic
+        isPublic: true 
     });
-    const [userId, setUserId] = useState(null); // State to store userId
+    const [userId, setUserId] = useState(null); 
     const [successMessage, setSuccessMessage] = useState('');
-    const editingCarRef = useRef(null); // Reference to the editing car section
+    const editingCarRef = useRef(null); 
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -29,7 +29,7 @@ const UserCars = () => {
 
                 const decodedToken = jwtDecode(token);
                 console.log('Decoded Token:', decodedToken);
-                setUserId(decodedToken.nameid); // Set userId from decoded token
+                setUserId(decodedToken.nameid); 
 
                 const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/user/${decodedToken.nameid}`);
                 if (!response.ok) {
@@ -73,7 +73,6 @@ const UserCars = () => {
             isPublic: car.isPublic 
         });
 
-        // Scroll to the editing car section
         editingCarRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
@@ -100,12 +99,12 @@ const UserCars = () => {
         reader.onloadend = () => {
             setEditForm(prevState => ({
                 ...prevState,
-                imageUrl: reader.result // Update the imageUrl in the editForm state with the data URL
+                imageUrl: reader.result
             }));
         };
     
         if (file) {
-            reader.readAsDataURL(file); // Read the file as a data URL
+            reader.readAsDataURL(file); 
         }
     };
       

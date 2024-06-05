@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import './style/sellcar.css';
 
 const SellCar = () => {
   const [carDetails, setCarDetails] = useState({
