@@ -163,11 +163,11 @@ const UserCars = () => {
             </div>
             {loading && <p>Loading...</p>}
             {error && <p>{error.message}</p>}
-            {successMessage && <p>{successMessage}</p>}
 
             {editingCar && (
                 <div ref={editingCarRef} className="form-container">
                     <h1>Edit Car</h1>
+                    {successMessage && <p>{successMessage}</p>}
                     <form onSubmit={submitEdit}>
                         <div className="form-group">
                             <label>Name:</label>
