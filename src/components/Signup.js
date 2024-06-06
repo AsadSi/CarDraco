@@ -5,9 +5,10 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(0);
+  const [error, setError] = useState(null);
 
   const handleSignup = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     try {
       const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/User/signup', {
@@ -20,11 +21,15 @@ const Signup = () => {
 
       if (response.ok) {
         console.log('Signup successful');
+        // Handle successful signup, e.g., redirect to login page or show success message
       } else {
-        console.error('Signup failed');
+        const errorData = await response.json();
+        console.error('Signup failed', errorData);
+        setError(errorData.message || 'Signup failed');
       }
     } catch (error) {
       console.error('Signup error:', error);
+      setError('An error occurred. Please try again later.');
     }
   };
 
@@ -60,7 +65,8 @@ const Signup = () => {
           </select>
         </div>
         <button type="submit">Signup</button>
-        <p>Already have an account? <Link to="/">login</Link></p>
+        {error && <p className="error">{error}</p>}
+        <p>Already have an account? <Link to="/">Login</Link></p>
       </form>
     </div>
   );
