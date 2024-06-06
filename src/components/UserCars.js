@@ -153,7 +153,7 @@ const UserCars = () => {
                         </div>
                         <div>
                             <p>{car.name}</p>
-                            <p>{car.condition}</p>
+                            <p>Condition: {car.condition}</p>
                             <p>${car.price}</p>
                             <button onClick={() => startEditCar(car)}>Edit</button>
                             <button onClick={() => deleteCar(car.id)}>Delete</button>

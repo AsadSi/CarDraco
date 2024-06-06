@@ -64,7 +64,7 @@ function Carapidisplay() {
                         </div>
                         <div>
                             <p>{car.name}</p>
-                            <p>{car.condition}</p>
+                            <p>Condition: {car.condition}</p>
                             <p>${car.price}</p>
                             {localStorage.getItem('role') === '1' && (
                                 <button onClick={() => deleteCar(car.id)}>Delete</button>
