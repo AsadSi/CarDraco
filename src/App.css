@@ -40,3 +40,8 @@
 body {
   background: rgb(20, 20, 20);
 }
+
+.card-img-top {
+  height: 200px; /* Adjust the height as needed */
+  object-fit: cover;
+}

@@ -49,7 +49,7 @@ function Carapidisplay() {
 
     return (
         <div class="container mt-5">
-            <div class="row justify-content-center my-5">
+            <div class="row justify-content-center mt-5">
                 <h2 className='my-5'>Cars for sale</h2>
             </div>
             <div class="row">
@@ -57,7 +57,7 @@ function Carapidisplay() {
                     <div class="col-lg-4 col-md-6 mb-4" key={car.id}>
                         <div class="card h-100">
                             <div class="aspect-ratio-box">
-                                <img src={car.imageUrl} class="card-img-top img-fluid max-height-200" alt={car.name} />
+                                <img src={car.imageUrl} class="card-img-top img-fluid" alt={car.name} />
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">{car.name}</h5>
