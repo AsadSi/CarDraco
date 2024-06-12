@@ -7,7 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import UserCars from './components/UserCars.js';
 import ProtectedRoute from './components/ProtectedRoute'; 
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

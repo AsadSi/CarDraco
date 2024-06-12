@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './style/carapidisplay.css';
 
 function Carapidisplay() {
     const [cars, setCars] = useState([]);
@@ -50,30 +49,31 @@ function Carapidisplay() {
 
     return (
         <div>
-            <div className="image-container">
-                <div className="overlay">
-                    <p className="text">Car List</p>
-                </div>
-            </div>
-
-            <div className="grid-container">
-                {cars.map((car) => (
-                    <div className="grid-item" key={car.id}>
-                        <div className="image-wrapper">
-                            <img src={car.imageUrl} alt={car.name} />
-                        </div>
-                        <div>
-                            <p>{car.name}</p>
-                            <p>Condition: {car.condition}</p>
-                            <p>${car.price}</p>
-                            {localStorage.getItem('role') === '1' && (
-                                <button onClick={() => deleteCar(car.id)}>Delete</button>
-                            )}
-                        </div>
-                    </div>
-                ))}
-            </div>
+        <div className="position-relative mb-4">
+          <div className="overlay position-absolute w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
+            <p className="text-white fs-2">Car List</p>
+          </div>
+          <img src="path/to/your/image.jpg" alt="Background" className="w-100" style={{ height: '300px', objectFit: 'cover' }} />
         </div>
+  
+        <div className="row">
+          {cars.map((car) => (
+            <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
+              <div className="card">
+                <img src={car.imageUrl} className="card-img-top" alt={car.name} />
+                <div className="card-body">
+                  <h5 className="card-title">{car.name}</h5>
+                  <p className="card-text">Condition: {car.condition}</p>
+                  <p className="card-text">${car.price}</p>
+                  {localStorage.getItem('role') === '1' && (
+                    <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     );
 }
 
