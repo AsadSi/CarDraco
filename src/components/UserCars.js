@@ -138,27 +138,27 @@ const UserCars = () => {
 
     return (
         <div className="container mt-5">
-            <div class="row justify-content-center my-3">
+            <div className="row justify-content-center my-3">
                 <h2>Your cars</h2>
             </div>
             <div className="row">
-            {cars.map(car => (
-                <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
-                <div className="card h-100">
-                    <div className="card-img-top">
-                    <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
+                {cars.map(car => (
+                    <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
+                        <div className="card h-100">
+                            <div className="aspect-ratio-box">
+                                <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
+                            </div>
+                            <div className="card-body d-flex flex-column">
+                                <h5 className="card-title">{car.name}</h5>
+                                <p className="card-text">Condition: {car.condition}</p>
+                                <p className="card-text">${car.price}</p>
+                                <div className="d-flex justify-content-between">
+                                    <button className="btn btn-primary" onClick={() => startEditCar(car)}>Edit</button>
+                                    <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">{car.name}</h5>
-                    <p className="card-text">Condition: {car.condition}</p>
-                    <p className="card-text">${car.price}</p>
-                    <div className="d-flex justify-content-between">
-                        <button className="btn btn-primary" onClick={() => startEditCar(car)}>Edit</button>
-                        <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
             ))}
             </div>
             {loading && <p className="text-center">Loading...</p>}

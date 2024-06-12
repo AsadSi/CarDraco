@@ -49,7 +49,7 @@ function Carapidisplay() {
 
     return (
         <div className="container mt-5">
-            <div class="row justify-content-center my-3">
+            <div class="row justify-content-center mt-5">
                 <h2>Your cars</h2>
             </div>
             <div className="row">
