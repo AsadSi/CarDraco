@@ -53,7 +53,6 @@ function Carapidisplay() {
           <div className="overlay position-absolute w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
             <p className="text-white fs-2">Car List</p>
           </div>
-          <img src="path/to/your/image.jpg" alt="Background" className="w-100" style={{ height: '300px', objectFit: 'cover' }} />
         </div>
   
         <div className="row">

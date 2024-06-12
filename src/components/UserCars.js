@@ -137,73 +137,66 @@ const UserCars = () => {
     };
 
     return (
-        <div className="container mt-5">
-        <div className="position-relative mb-4">
-          <div className="overlay position-absolute w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
-            <p className="text-white fs-2">Car List</p>
-          </div>
-          <img src="path/to/your/image.jpg" alt="Background" className="w-100" style={{ height: '300px', objectFit: 'cover' }} />
-        </div>
-  
-        <div className="row">
-          {cars.map(car => (
-            <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
-              <div className="card">
-                <div className="card-img-top">
-                  <img src={car.imageUrl} className="img-fluid" alt={car.name} />
+        <div className="container mt-5">  
+            <div className="row">
+            {cars.map(car => (
+                <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
+                <div className="card">
+                    <div className="card-img-top">
+                    <img src={car.imageUrl} className="img-fluid" alt={car.name} />
+                    </div>
+                    <div className="card-body">
+                    <h5 className="card-title">{car.name}</h5>
+                    <p className="card-text">Condition: {car.condition}</p>
+                    <p className="card-text">${car.price}</p>
+                    <div className="d-flex justify-content-between">
+                        <button className="btn btn-primary" onClick={() => startEditCar(car)}>Edit</button>
+                        <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
+                    </div>
+                    </div>
                 </div>
-                <div className="card-body">
-                  <h5 className="card-title">{car.name}</h5>
-                  <p className="card-text">Condition: {car.condition}</p>
-                  <p className="card-text">${car.price}</p>
-                  <div className="d-flex justify-content-between">
-                    <button className="btn btn-primary" onClick={() => startEditCar(car)}>Edit</button>
-                    <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
-                  </div>
                 </div>
-              </div>
+            ))}
             </div>
-          ))}
+            {loading && <p className="text-center">Loading...</p>}
+            {error && <p className="text-danger text-center">{error.message}</p>}
+    
+            {editingCar && (
+            <div ref={editingCarRef} className="card p-4 mt-4">
+                <h1 className="text-center">Edit Car</h1>
+                {successMessage && <p className="alert alert-success">{successMessage}</p>}
+                <form onSubmit={submitEdit}>
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Name:</label>
+                    <input type="text" className="form-control" id="name" name="name" value={editForm.name} onChange={handleEditChange} required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="condition" className="form-label">Condition:</label>
+                    <input type="text" className="form-control" id="condition" name="condition" value={editForm.condition} onChange={handleEditChange} required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="price" className="form-label">Price:</label>
+                    <input type="number" className="form-control" id="price" name="price" value={editForm.price} onChange={handleEditChange} required />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="image" className="form-label">Image:</label>
+                    <input type="file" className="form-control" id="image" accept="image/*" name="image" onChange={handleImageChange} />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="isPublic" className="form-label">Is Public:</label>
+                    <select className="form-select" id="isPublic" name="isPublic" value={editForm.isPublic} onChange={handleEditChange}>
+                    <option value={true}>Public</option>
+                    <option value={false}>Hidden</option>
+                    </select>
+                </div>
+                <div className="d-flex justify-content-between">
+                    <button type="submit" className="btn btn-success">Save</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => setEditingCar(null)}>Cancel</button>
+                </div>
+                </form>
+            </div>
+            )}
         </div>
-        {loading && <p className="text-center">Loading...</p>}
-        {error && <p className="text-danger text-center">{error.message}</p>}
-  
-        {editingCar && (
-          <div ref={editingCarRef} className="card p-4 mt-4">
-            <h1 className="text-center">Edit Car</h1>
-            {successMessage && <p className="alert alert-success">{successMessage}</p>}
-            <form onSubmit={submitEdit}>
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">Name:</label>
-                <input type="text" className="form-control" id="name" name="name" value={editForm.name} onChange={handleEditChange} required />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="condition" className="form-label">Condition:</label>
-                <input type="text" className="form-control" id="condition" name="condition" value={editForm.condition} onChange={handleEditChange} required />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="price" className="form-label">Price:</label>
-                <input type="number" className="form-control" id="price" name="price" value={editForm.price} onChange={handleEditChange} required />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="image" className="form-label">Image:</label>
-                <input type="file" className="form-control" id="image" accept="image/*" name="image" onChange={handleImageChange} />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="isPublic" className="form-label">Is Public:</label>
-                <select className="form-select" id="isPublic" name="isPublic" value={editForm.isPublic} onChange={handleEditChange}>
-                  <option value={true}>Public</option>
-                  <option value={false}>Hidden</option>
-                </select>
-              </div>
-              <div className="d-flex justify-content-between">
-                <button type="submit" className="btn btn-success">Save</button>
-                <button type="button" className="btn btn-secondary" onClick={() => setEditingCar(null)}>Cancel</button>
-              </div>
-            </form>
-          </div>
-        )}
-      </div>
     );
 };
 
