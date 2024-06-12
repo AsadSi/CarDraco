@@ -146,13 +146,13 @@ const UserCars = () => {
                     <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
                         <div className="card h-100">
                             <div className="aspect-ratio-box">
-                                <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
+                                <img src={car.imageUrl} className="card-img-top" alt={car.name} />
                             </div>
                             <div className="card-body d-flex flex-column">
                                 <h5 className="card-title">{car.name}</h5>
                                 <p className="card-text">Condition: {car.condition}</p>
                                 <p className="card-text">${car.price}</p>
-                                <div className="d-flex justify-content-between">
+                                <div className="d-flex">
                                     <button className="btn btn-primary" onClick={() => startEditCar(car)}>Edit</button>
                                     <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
                                 </div>
