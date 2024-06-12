@@ -49,30 +49,24 @@ function Carapidisplay() {
 
     return (
         <div>
-        <div className="position-relative mb-4">
-          <div className="overlay position-absolute w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-50">
-            <p className="text-white fs-2">Car List</p>
-          </div>
-        </div>
-  
-        <div className="row">
-          {cars.map((car) => (
-            <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
-              <div className="card">
-                <img src={car.imageUrl} className="card-img-top" alt={car.name} />
-                <div className="card-body">
-                  <h5 className="card-title">{car.name}</h5>
-                  <p className="card-text">Condition: {car.condition}</p>
-                  <p className="card-text">${car.price}</p>
-                  {localStorage.getItem('role') === '1' && (
-                    <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
-                  )}
+            <div className="row">
+            {cars.map((car) => (
+                <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
+                <div className="card">
+                    <img src={car.imageUrl} className="card-img-top" alt={car.name} />
+                    <div className="card-body">
+                    <h5 className="card-title">{car.name}</h5>
+                    <p className="card-text">Condition: {car.condition}</p>
+                    <p className="card-text">${car.price}</p>
+                    {localStorage.getItem('role') === '1' && (
+                        <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
+                    )}
+                    </div>
                 </div>
-              </div>
+                </div>
+            ))}
             </div>
-          ))}
         </div>
-      </div>
     );
 }
 
