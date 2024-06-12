@@ -152,7 +152,7 @@ const UserCars = () => {
                                 <h5 className="card-title">{car.name}</h5>
                                 <p className="card-text">Condition: {car.condition}</p>
                                 <p className="card-text">${car.price}</p>
-                                <div className="d-flex">
+                                <div className="d-flex justify-content-between">
                                     <button className="btn btn-primary" onClick={() => startEditCar(car)}>Edit</button>
                                     <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
                                 </div>

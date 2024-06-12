@@ -68,7 +68,7 @@ const SellCar = () => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-center mt-5">
-        <div className="card p-4">
+        <div className="card p-4 mt-5">
           <h1 className="text-center">Sell Your Car</h1>
           {successMessage && <p className="alert alert-success">{successMessage}</p>}
           <form onSubmit={handleSubmit}>
