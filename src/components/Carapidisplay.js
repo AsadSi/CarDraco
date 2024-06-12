@@ -48,21 +48,23 @@ function Carapidisplay() {
     };
 
     return (
-        <div className="container mt-5">
-            <div class="row justify-content-center mt-5">
-                <h2>Your cars</h2>
+        <div class="container mt-5">
+            <div class="row justify-content-center my-5">
+                <h2 className='my-5'>Cars for sale</h2>
             </div>
-            <div className="row">
+            <div class="row">
                 {cars.map((car) => (
-                    <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
-                        <div className="card h-100">
-                            <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
-                            <div className="card-body d-flex flex-column">
-                                <h5 className="card-title">{car.name}</h5>
-                                <p className="card-text">Condition: {car.condition}</p>
-                                <p className="card-text">${car.price}</p>
+                    <div class="col-lg-4 col-md-6 mb-4" key={car.id}>
+                        <div class="card h-100">
+                            <div class="aspect-ratio-box">
+                                <img src={car.imageUrl} class="card-img-top img-fluid max-height-200" alt={car.name} />
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{car.name}</h5>
+                                <p class="card-text">Condition: {car.condition}</p>
+                                <p class="card-text">${car.price}</p>
                                 {localStorage.getItem('role') === '1' && (
-                                    <button className="btn btn-danger mt-auto" onClick={() => deleteCar(car.id)}>Delete</button>
+                                    <button class="btn btn-danger mt-auto" onClick={() => deleteCar(car.id)}>Delete</button>
                                 )}
                             </div>
                         </div>
