@@ -138,8 +138,8 @@ const UserCars = () => {
 
     return (
         <div class="container mt-5">
-            <div class="row justify-content-center mt-5">
-                <h2 className='my-5'>Your cars</h2>
+            <div class="row d-flex justify-content-center mt-5">
+                <h2 className='my-5 text-white'>Your cars</h2>
             </div>
             <div className="row">
                 {cars.map(car => (

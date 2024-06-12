@@ -24,7 +24,7 @@ const Navbar = () => {
           aria-label="Toggle navigation"
           onClick={() => setShowMenu(!showMenu)}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="text-white navbar-toggler-icon"></span>
         </button>
         <div className={`collapse navbar-collapse ${showMenu ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-primary">
