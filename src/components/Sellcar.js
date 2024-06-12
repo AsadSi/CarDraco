@@ -66,63 +66,65 @@ const SellCar = () => {
   };
 
   return (
-<div className="container mt-5">
-      <div className="card p-4">
-        <h1 className="text-center">Sell Your Car</h1>
-        {successMessage && <p className="alert alert-success">{successMessage}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">Name:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={carDetails.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="condition" className="form-label">Condition:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="condition"
-              name="condition"
-              value={carDetails.condition}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="price" className="form-label">Price:</label>
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              name="price"
-              value={carDetails.price}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="image" className="form-label">Image:</label>
-            <input
-              type="file"
-              className="form-control"
-              id="image"
-              accept="image/*"
-              name="image"
-              onChange={handleImageChange}
-              required
-            />
-          </div>
-          <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-primary">Submit</button>
-          </div>
-        </form>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-center">
+        <div className="card p-4">
+          <h1 className="text-center">Sell Your Car</h1>
+          {successMessage && <p className="alert alert-success">{successMessage}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">Name:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                value={carDetails.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="condition" className="form-label">Condition:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="condition"
+                name="condition"
+                value={carDetails.condition}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="price" className="form-label">Price:</label>
+              <input
+                type="number"
+                className="form-control"
+                id="price"
+                name="price"
+                value={carDetails.price}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="image" className="form-label">Image:</label>
+              <input
+                type="file"
+                className="form-control"
+                id="image"
+                accept="image/*"
+                name="image"
+                onChange={handleImageChange}
+                required
+              />
+            </div>
+            <div className="d-flex justify-content-center">
+              <button type="submit" className="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

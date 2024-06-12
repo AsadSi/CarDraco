@@ -137,13 +137,18 @@ const UserCars = () => {
     };
 
     return (
-        <div className="container mt-5">  
+        <div className="container mt-5">
+            <div className="row">
+                <h2>
+                    Your cars
+                </h2>
+            </div>
             <div className="row">
             {cars.map(car => (
                 <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
                 <div className="card">
                     <div className="card-img-top">
-                    <img src={car.imageUrl} className="img-fluid" alt={car.name} />
+                    <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
                     </div>
                     <div className="card-body">
                     <h5 className="card-title">{car.name}</h5>

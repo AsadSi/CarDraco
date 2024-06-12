@@ -48,23 +48,28 @@ function Carapidisplay() {
     };
 
     return (
-        <div>
+        <div className="container mt-5">
             <div className="row">
-            {cars.map((car) => (
-                <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
-                <div className="card">
-                    <img src={car.imageUrl} className="card-img-top" alt={car.name} />
-                    <div className="card-body">
-                    <h5 className="card-title">{car.name}</h5>
-                    <p className="card-text">Condition: {car.condition}</p>
-                    <p className="card-text">${car.price}</p>
-                    {localStorage.getItem('role') === '1' && (
-                        <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
-                    )}
+                <h2>
+                    Cars for sale
+                </h2>
+            </div>
+            <div className="row">
+                {cars.map((car) => (
+                    <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
+                        <div className="card">
+                            <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
+                            <div className="card-body">
+                                <h5 className="card-title">{car.name}</h5>
+                                <p className="card-text">Condition: {car.condition}</p>
+                                <p className="card-text">${car.price}</p>
+                                {localStorage.getItem('role') === '1' && (
+                                    <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
-            ))}
+                ))}
             </div>
         </div>
     );
