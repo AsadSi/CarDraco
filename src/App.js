@@ -10,7 +10,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 

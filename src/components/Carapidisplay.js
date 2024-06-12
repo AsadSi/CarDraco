@@ -49,22 +49,20 @@ function Carapidisplay() {
 
     return (
         <div className="container mt-5">
-            <div className="row">
-                <h2>
-                    Cars for sale
-                </h2>
+            <div class="row justify-content-center my-3">
+                <h2>Your cars</h2>
             </div>
             <div className="row">
                 {cars.map((car) => (
                     <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
-                        <div className="card">
+                        <div className="card h-100">
                             <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
-                            <div className="card-body">
+                            <div className="card-body d-flex flex-column">
                                 <h5 className="card-title">{car.name}</h5>
                                 <p className="card-text">Condition: {car.condition}</p>
                                 <p className="card-text">${car.price}</p>
                                 {localStorage.getItem('role') === '1' && (
-                                    <button className="btn btn-danger" onClick={() => deleteCar(car.id)}>Delete</button>
+                                    <button className="btn btn-danger mt-auto" onClick={() => deleteCar(car.id)}>Delete</button>
                                 )}
                             </div>
                         </div>
