@@ -146,7 +146,7 @@ const UserCars = () => {
                     <div className="col-lg-4 col-md-6 mb-4" key={car.id}>
                         <div className="card h-100">
                             <div className="aspect-ratio-box">
-                                <img src={car.imageUrl} className="card-img-top img-fluid max-height-200" alt={car.name} />
+                                <img src={car.imageUrl} className="card-img-top img-fluid" alt={car.name} />
                             </div>
                             <div className="card-body d-flex flex-column">
                                 <h5 className="card-title">{car.name}</h5>
