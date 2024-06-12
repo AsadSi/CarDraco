@@ -29,16 +29,16 @@ const Navbar = () => {
         <div className={`collapse navbar-collapse ${showMenu ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-primary">
             <li className="nav-item">
-              <Link className="nav-link" to="/cars">Our Cars</Link>
+              <Link className="nav-link text-white" to="/cars">Our Cars</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/sellcar">Sell Your Car</Link>
+              <Link className="nav-link text-white" to="/sellcar">Sell Your Car</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/mycars">My Cars</Link>
+              <Link className="nav-link text-white" to="/mycars">My Cars</Link>
             </li>
             <li className="nav-item">
-              <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
+              <button className="btn btn-link nav-link text-white" onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </div>
