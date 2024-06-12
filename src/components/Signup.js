@@ -31,7 +31,7 @@ const Signup = () => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-center my-5">
-        <div className="card p-4">
+        <div className="card p-4 mt-5">
           <h2 className="text-center">Signup</h2>
           <form onSubmit={handleSignup}>
             <div className="form-group">

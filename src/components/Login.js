@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-center mt-5">
-        <div className="card p-4">
+        <div className="card p-4 mt-5">
           <h2 className="text-center">Login</h2>
           <form onSubmit={handleLogin}>
             <div className="form-group">
