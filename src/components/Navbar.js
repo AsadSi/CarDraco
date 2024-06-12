@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-dark fixed-top">
       <div className="container-fluid">
         <button 
-          className="navbar-toggler" 
+          className="navbar-toggler text-white" 
           type="button" 
           data-bs-toggle="collapse" 
           data-bs-target="#navbarNav" 
