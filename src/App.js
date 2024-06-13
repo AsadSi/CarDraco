@@ -13,7 +13,7 @@ import './App.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const noFooterPaths = ['/login', '/signup'];
+  const noFooterPaths = ['/', '/signup'];
 
 
   useEffect(() => {
