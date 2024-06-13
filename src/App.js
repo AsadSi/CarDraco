@@ -6,12 +6,15 @@ import Sellcar from './components/Sellcar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import UserCars from './components/UserCars.js';
+import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const noFooterPaths = ['/login', '/signup'];
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,7 +22,7 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
@@ -37,7 +40,8 @@ const App = () => {
           element={<ProtectedRoute element={<UserCars />} path="/mycars" isAuthenticated={isAuthenticated} />}
         />
       </Routes>
-    </Router>
+      {!noFooterPaths.includes(location.pathname) && <Footer />}
+    </>
   );
 };
 
