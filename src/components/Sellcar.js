@@ -66,7 +66,7 @@ const SellCar = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <div className="d-flex justify-content-center mt-5">
         <div className="card p-4 mt-5">
           <h1 className="text-center">Sell Your Car</h1>

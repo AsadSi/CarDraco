@@ -137,7 +137,7 @@ const UserCars = () => {
     };
 
     return (
-        <div class="container mt-5">
+        <div class="container my-5">
             <div class="row d-flex justify-content-center mt-5">
                 <h2 className='my-5 text-white text-center'>Your cars</h2>
             </div>
