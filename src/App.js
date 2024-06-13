@@ -1,28 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Carapidisplay from './components/Carapidisplay';
 import Sellcar from './components/Sellcar';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import UserCars from './components/UserCars.js';
+import UserCars from './components/UserCars';
+import ProtectedRoute from './components/ProtectedRoute';
 import Footer from './components/Footer';
-import ProtectedRoute from './components/ProtectedRoute'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const noFooterPaths = ['/', '/signup'];
-
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token);
   }, []);
 
+  const FooterWithVisibility = () => {
+    const location = useLocation();
+    const shouldHideFooter = location.pathname === '/' || location.pathname === '/signup';
+  
+    return !shouldHideFooter && <Footer />;
+  };
+
   return (
-    <>
+    <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
@@ -40,8 +45,8 @@ const App = () => {
           element={<ProtectedRoute element={<UserCars />} path="/mycars" isAuthenticated={isAuthenticated} />}
         />
       </Routes>
-      {!noFooterPaths.includes(location.pathname) && <Footer />}
-    </>
+      <FooterWithVisibility />
+    </Router>
   );
 };
 
