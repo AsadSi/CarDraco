@@ -35,17 +35,22 @@ function Carapidisplay() {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json' // Ensure appropriate content type if needed
                 },
             });
+    
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                const errorMessage = await response.text();
+                throw new Error(`Failed to delete car. Status: ${response.status}. ${errorMessage}`);
             }
-
+    
             setCars(cars.filter(car => car.id !== id));
         } catch (error) {
             console.error("Error deleting car: ", error);
+            // Handle error display or logging as needed
         }
     };
+    
 
     return (
         <div class="container my-5">
