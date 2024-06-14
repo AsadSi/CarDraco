@@ -49,7 +49,7 @@ const UserCars = () => {
 
     const deleteCar = async (id) => {
         try {
-            const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/car/user/${id}`, {
+            const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/car/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {

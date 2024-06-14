@@ -31,7 +31,7 @@ function Carapidisplay() {
 
     const deleteCar = async (id) => {
         try {
-            const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/admin${id}`, {
+            const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/Car/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
