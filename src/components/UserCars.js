@@ -51,9 +51,6 @@ const UserCars = () => {
         try {
             const response = await fetch(`https://apicedraco20240522123857.azurewebsites.net/api/car/userdelete/${id}`, {
                 method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
