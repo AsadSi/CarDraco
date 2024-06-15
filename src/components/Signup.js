@@ -5,9 +5,11 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(0);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignup = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     try {
       const response = await fetch('https://apicedraco20240522123857.azurewebsites.net/api/User/signup', {
@@ -19,12 +21,16 @@ const Signup = () => {
       });
 
       if (response.ok) {
-        console.log('Signup successful');
+        setSuccessMessage('Signup successful!');
+        setErrorMessage('');
       } else {
-        console.error('Signup failed');
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || 'Signup failed');
+        setSuccessMessage('');
       }
     } catch (error) {
-      console.error('Signup error:', error);
+      setErrorMessage('Signup error: ' + error.message);
+      setSuccessMessage('');
     }
   };
 
@@ -73,6 +79,12 @@ const Signup = () => {
             <div className="d-flex justify-content-center">
               <button type="submit" className="m-3 btn btn-primary">Signup</button>
             </div>
+            {successMessage && (
+              <div className="alert alert-success text-center">{successMessage}</div>
+            )}
+            {errorMessage && (
+              <div className="alert alert-danger text-center">{errorMessage}</div>
+            )}
             <p className="mt-3 text-center">
               Already have an account? <Link to="/">Login</Link>
             </p>
@@ -80,7 +92,6 @@ const Signup = () => {
         </div>
       </div>
     </div>
-
   );
 };
 
