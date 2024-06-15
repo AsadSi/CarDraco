@@ -73,8 +73,8 @@ const Login = () => {
                 required
               />
             </div>
-            {errorMessage && (
-              <div className="alert alert-danger text-center">{errorMessage}</div>
+            {error && (
+              <div className="alert alert-danger text-center">{error}</div>
             )}
             <div className="text-center">
               <button type="submit" className="m-2 btn btn-primary">Login</button>
