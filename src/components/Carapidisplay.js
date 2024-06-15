@@ -46,7 +46,7 @@ function Carapidisplay() {
             setCars(cars.filter(car => car.id !== id));
         } catch (error) {
             console.error("Error deleting car: ", error);
-            // Handle error display or logging as needed
+            // Handle error display or logging
         }
     };
     

@@ -5,6 +5,8 @@ const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(0);
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const [signupError, setSignupError] = useState(null); // State for error message
 
   const handleSignup = async (e) => {
     e.preventDefault(); 
@@ -19,12 +21,18 @@ const Signup = () => {
       });
 
       if (response.ok) {
+        setSignupSuccess(true); // Set signup success state
+        setSignupError(null); // Clear any previous errors
         console.log('Signup successful');
       } else {
-        console.error('Signup failed');
+        // Handle other non-success responses (e.g., bad request)
+        const data = await response.json();
+        setSignupError(data.message || 'Signup failed');
+        console.error('Signup failed:', data.message || 'Unknown error');
       }
     } catch (error) {
       console.error('Signup error:', error);
+      setSignupError('Signup failed'); // Generic error message
     }
   };
 
@@ -33,6 +41,16 @@ const Signup = () => {
       <div className="d-flex justify-content-center my-5">
         <div className="card p-4 mt-5">
           <h2 className="text-center">Signup</h2>
+          {signupSuccess && ( // Display success message if signup was successful
+            <div className="alert alert-success" role="alert">
+              Signup successful!
+            </div>
+          )}
+          {signupError && ( // Display error message if signup failed
+            <div className="alert alert-danger" role="alert">
+              {signupError}
+            </div>
+          )}
           <form onSubmit={handleSignup}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
@@ -80,7 +98,6 @@ const Signup = () => {
         </div>
       </div>
     </div>
-
   );
 };
 
